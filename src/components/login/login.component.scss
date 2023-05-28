@@ -1,0 +1,53 @@
+@import "src/variables";
+
+.login {
+  .login-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    width: 100%;
+
+    .login-content {
+      align-items: center;
+      background-color: #fafbfc;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px #00000029;
+      flex-direction: column;
+      justify-content: flex-start;
+      max-width: 460px;
+      padding: 30px;
+      width: calc(100% - 20px);
+
+      input {
+        background-color: $light-gray;
+        border: 0 none;
+        border-radius: 1vh;
+        height: 2vh;
+        margin: 1vh 0;
+        padding: 1vh;
+        width: 100%;
+
+        &:focus-visible {
+          outline: 0 none;
+        }
+      }
+
+      .login-button {
+        background-color: $orange;
+        border: 0 none;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px #00000029;
+        color: #fafbfc;
+        cursor: pointer;
+        float: right;
+        font-size: 13px;
+        font-weight: 700;
+        height: 3vh;
+        outline: 0 none;
+        padding: 0 1vh;
+        transition: background-color .5s ease-in-out;
+      }
+    }
+  }
+}

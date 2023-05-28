@@ -1,25 +1,29 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
-function App() {
+export default function App() {
+
+  const logout = () => {
+    localStorage.clear();
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={"App"}>
+      <div className={"header-wrapper"}>
+        <div className="logo">
+          <a href="/">
+            <img src={logo} alt="App logo"/>
+          </a>
+        </div>
+        <div className="navigation-wrapper">
+          <a href="/items">Items</a>
+          <a href="/users">Users</a>
+        </div>
+        <div className="login-wrapper">
+          <a href="/login">Login</a>
+          <a href="/" onClick={logout}>Logout</a>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default App;
