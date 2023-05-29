@@ -13,7 +13,8 @@ export default class LoginComponent extends Component {
       password: '',
       usernameError: false,
       passwordError: false,
-      loginError: false
+      credentialsError: false,
+      userError: false
     };
   }
 
@@ -24,57 +25,64 @@ export default class LoginComponent extends Component {
     if (!this.state.password) {
       this.setState({passwordError: true})
     }
-    if (this.state.usernameError || this.state.passwordError) {
+    if (!this.state.username || !this.state.password) {
       return;
     }
     usersApi.login(this.state.username, this.state.password).then(response => {
       const data = response.data;
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
+      localStorage.setItem("role", data.roles[0].authority)
+      window.location.href = "/items";
     }).catch(error => {
-      console.log(error.response.status)
-      if (error.response.status === 404) {
-        this.setState({loginError: true});
+      if (error.response?.status === 401) {
+        this.setState({credentialsError: true});
+      }
+      if (error.response?.status === 404) {
+        this.setState({userError: true});
       }
     });
   }
 
   setUsernameValue = (value) => {
     this.setState({usernameError: false});
-    this.setState({loginError: false});
+    this.setState({credentialsError: false});
+    this.setState({userError: false});
     this.setState({username: value});
   }
 
   setPasswordValue = (value) => {
     this.setState({passwordError: false});
-    this.setState({loginError: false});
+    this.setState({credentialsError: false});
+    this.setState({userError: false});
     this.setState({password: value});
   }
 
   render() {
     return (
       <div className="login">
-        <div className="login-wrapper">
-          <div className="login-content">
-            <h2>Iniciar sesión</h2>
+        <div className="login-wrapper wrapper">
+          <div className="login-content content">
+            <h2>Login</h2>
             <input
               type="text"
               required
               id="username"
               className="username"
-              placeholder="Nombre de usuario"
+              placeholder="Username"
               onChange={event => this.setUsernameValue(event.target.value)}/>
-            {this.state.usernameError ? <span className={'error'}>Debe introducir un nombre de usuario</span> : null}
+            {this.state.usernameError ? <span className={'error'}>Username is mandatory</span> : null}
             <input
               type="password"
               required
               id="password"
               className="password"
-              placeholder="Contraseña"
+              placeholder="Password"
               onChange={event => this.setPasswordValue(event.target.value)}/>
-            {this.state.passwordError ? <span className={'error'}>Debe introducir una contraseña</span> : null}
-            {this.state.loginError ? <span className={'error'}>El usuario introducido no existe.</span> : null}
-            <button className="login-button" onClick={this.login}>Iniciar sesión</button>
+            {this.state.passwordError ? <span className={'error'}>Password is mandatory</span> : null}
+            {this.state.credentialsError ? <span className={'error'}>Password is not correct</span> : null}
+            {this.state.userError ? <span className={'error'}>User not found</span> : null}
+            <button className="login-button" onClick={this.login}>Log in</button>
           </div>
         </div>
       </div>

@@ -1,3 +1,19 @@
 .items {
-  margin-top: 6vh;
+  height: calc(100vh - 6vh);
+
+  .items-wrapper {
+
+    .function-wrapper {
+
+      .button-wrapper {
+        position: absolute;
+        right: 1vh;
+        top: 0;
+
+        &.cancel {
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
 }

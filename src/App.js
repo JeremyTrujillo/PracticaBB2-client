@@ -3,9 +3,13 @@ import './App.scss';
 
 export default function App() {
 
-  const logout = () => {
+  function logout() {
     localStorage.clear();
+    window.location.href = "/";
   }
+
+  const loggedUser = localStorage.getItem("username");
+  const role = localStorage.getItem("role");
 
   return (
     <div className={"App"}>
@@ -17,11 +21,10 @@ export default function App() {
         </div>
         <div className="navigation-wrapper">
           <a href="/items">Items</a>
-          <a href="/users">Users</a>
+          { role === "ADMIN" ? <a href="/users">Users</a> : null }
         </div>
         <div className="login-wrapper">
-          <a href="/login">Login</a>
-          <a href="/" onClick={logout}>Logout</a>
+          { loggedUser  !== null ? <a href="/" onClick={logout}>Logout</a> : <a href="/login">Login</a> }
         </div>
       </div>
     </div>
