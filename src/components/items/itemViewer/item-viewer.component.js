@@ -38,11 +38,15 @@ export default class ItemViewer extends Component {
         return 0;
     }
 
+    changeURL = (url) => {
+        window.location.href = url + "/" + this.state.item.id;
+      }
+
     render() {
         return(
             <div className="item-viewer">
                 <div className="button-wrapper">
-                    <button className="action-button">Edit</button>
+                    <button className="action-button" onClick={this.changeURL.bind(this, "/items/edit/")}>Edit</button>
                 </div>
                 <div className="item-header">
                     <div className="header-first-line">

@@ -18,7 +18,7 @@ export default function Routing() {
         <Route path = "/items" element= {<ItemsComponent/>}>
           <Route path = "" element = {<ItemSearcherComponent/>}/>
           <Route path = "new" element = {<ItemCreatorComponent/>}/>
-          <Route path = "edit:itemId" element = {<ItemEditorComponent/>}/>
+          <Route path = "edit/:itemId" element = {<ItemEditorComponent/>}/>
         </Route>
       </Routes>
     </BrowserRouter>  

@@ -25,8 +25,8 @@ export default class ItemsComponent extends Component {
         <div className="items-wrapper wrapper">
           <h2>Items</h2>
           <div className="function-wrapper content">
-            <div className={"button-wrapper "+ (window.location.pathname === "/items/new" ? "cancel" : '') }>
-              { window.location.pathname !== "/items/new" ?
+            <div className={"button-wrapper "+ (window.location.pathname !== "/items" ? "cancel" : '') }>
+              { window.location.pathname === "/items" ?
               <button className="button-icon" ><i title="Create item" onClick={this.changeURL.bind(this, "/items/new")}>+</i></button>
                 :
                 <button className="button-icon"><i title="Cancel" onClick={this.changeURL.bind(this, "/items")}>+</i></button> }
