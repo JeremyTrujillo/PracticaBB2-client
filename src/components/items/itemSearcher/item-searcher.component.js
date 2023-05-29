@@ -1,18 +1,9 @@
 import { Component } from "react";
 import "./item-searcher.component.scss";
 import { ItemsApi } from "../../../api/items.api";
-import { useOutletContext } from "react-router-dom";
 import ItemViewer from "../itemViewer/item-viewer.component";
 
 const itemsApi = new ItemsApi();
-
-const MySubComponent = (props) => {
-  const { items } = useOutletContext();
-  console.log(props);
-  if (props.display) {
-    return <p>display</p>
-  }
-}
 export default class ItemSearcherComponent extends Component {
 
   constructor(props) {

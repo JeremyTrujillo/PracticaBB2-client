@@ -1,0 +1,28 @@
+.item-viewer {
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1607843137);
+    padding: 1vh;
+
+    .item-header {
+        line-height: 1;
+        .header-first-line {
+            align-items: flex-end;
+            display: flex;
+
+            h2 {
+                margin-right: 2vh;
+            }
+        }
+        .original-price {
+            text-decoration: line-through;
+        }
+        .creator {
+            font-size: 12px;
+        }
+    }
+    .description-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+}

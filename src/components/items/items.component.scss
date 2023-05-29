@@ -1,3 +1,5 @@
+@import "src/variables.scss";
+
 .items {
   height: calc(100vh - 6vh);
 
@@ -8,10 +10,14 @@
       .button-wrapper {
         position: absolute;
         right: 1vh;
-        top: 0;
+        top: 1vh;
 
         &.cancel {
           transform: rotate(45deg);
+        }
+
+        .button-icon {
+          background-color: $white;
         }
       }
     }

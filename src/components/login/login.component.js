@@ -82,7 +82,7 @@ export default class LoginComponent extends Component {
             {this.state.passwordError ? <span className={'error'}>Password is mandatory</span> : null}
             {this.state.credentialsError ? <span className={'error'}>Password is not correct</span> : null}
             {this.state.userError ? <span className={'error'}>User not found</span> : null}
-            <button className="login-button" onClick={this.login}>Log in</button>
+            <button className="form-button action-button" onClick={this.login}>Log in</button>
           </div>
         </div>
       </div>

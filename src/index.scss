@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .content {
   align-items: center;
-    background-color: #fafbfc;
+    background-color: $white;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1607843137);
     flex-direction: column;
@@ -42,14 +42,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 button {
-  background-color: #EC722E;
+  cursor: pointer;
   border: 0 none;
   border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1607843137);
-  color: #fafbfc;
   font-size: 13px;
   font-weight: 700;
   height: 3vh;
   outline: 0 none;
   padding: 0 1vh;
+
+  &.action-button {
+    background-color: $orange;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1607843137);
+    color: $white;
+  }
+
+  &.form-button {
+    float: right;
+    transition: background-color .5s ease-in-out;
+  }
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

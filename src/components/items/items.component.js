@@ -11,8 +11,6 @@ export default class ItemsComponent extends Component {
     }
   }
 
-  
-
   setItems = (data) => {
     this.setState({items: data});
   }
@@ -29,8 +27,9 @@ export default class ItemsComponent extends Component {
           <div className="function-wrapper content">
             <div className={"button-wrapper "+ (window.location.pathname === "/items/new" ? "cancel" : '') }>
               { window.location.pathname !== "/items/new" ?
-               <i className="button-icon" title="Create item" onClick={this.changeURL.bind(this, "/items/new")}>+</i> :
-                <i className="button-icon" title="Cancel" onClick={this.changeURL.bind(this, "/items")}>+</i> }
+              <button className="button-icon" ><i title="Create item" onClick={this.changeURL.bind(this, "/items/new")}>+</i></button>
+                :
+                <button className="button-icon"><i title="Cancel" onClick={this.changeURL.bind(this, "/items")}>+</i></button> }
             </div>
             <Outlet />
           </div>
