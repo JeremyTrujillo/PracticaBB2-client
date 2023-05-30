@@ -13,7 +13,6 @@ export default class ItemCreatorComponent extends Component{
       price: 0.0,
       itemCodeEmptyError: false,
       descriptionEmptyError: false,
-      priceError: false,
       invalidItemCodeError: false,
       existingItemCodeError: false
     };
@@ -41,6 +40,9 @@ export default class ItemCreatorComponent extends Component{
       console.log(error)
       if (error.response?.status === 400) {
         this.setState({invalidItemCodeError: true})
+      }
+      if (error.response?.status === 401) {
+        window.location.href = "/login";
       }
       if (error.response?.status === 409) {
         this.setState({existingItemCodeError: true})
@@ -75,7 +77,7 @@ export default class ItemCreatorComponent extends Component{
           <input type="text" placeholder="Description..."  onChange={event => this.setDescriptionValue(event.target.value)}/>
           { this.state.descriptionEmptyError ? <span className="error">Description is empty</span> : null }
           <input type="number" step="0.01" min="0.00" defaultValue={0.01} placeholder="Price..."  onChange={event => this.setPriceValue(event.target.value)}/>
-          <button class="action-button form-button" onClick={this.createItem}>Create</button>
+          <button className="action-button form-button" onClick={this.createItem}>Create</button>
           { this.state.existingItemCodeError ? <span className="error">Item code already in use</span> : null }
           { this.state.invalidItemCodeError ? <span className="error">Invalid Item code</span> : null }
         </div>

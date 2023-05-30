@@ -1,0 +1,25 @@
+@import "src/variables";
+
+.user-creator {
+
+  .editor-wrapper {
+
+    input, select {
+      background-color: $light-gray;
+      border: 0 none;
+      border-radius: 1vh;
+      box-sizing: border-box;
+      height: 3vh;
+      margin: 1vh 0;
+      width: 100%;
+    }
+
+    input {
+      padding: 1vh;
+    }
+
+    select {
+      padding: 0 1vh;
+    }
+  }
+}

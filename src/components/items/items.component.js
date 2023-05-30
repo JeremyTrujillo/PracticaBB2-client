@@ -11,10 +11,6 @@ export default class ItemsComponent extends Component {
     }
   }
 
-  setItems = (data) => {
-    this.setState({items: data});
-  }
-
   changeURL = (url) => {
     window.location.href = url;
   }

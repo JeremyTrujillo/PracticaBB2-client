@@ -1,13 +1,17 @@
-import { ApiUtils } from "./apiUtils";
-
-const apiUtils = new ApiUtils();
+import axios from "axios";
 
 export class UsersApi {
-  usersUrl = "http://localhost:8080/users";
+
+  getUsersInstance() {
+    return axios.create({
+      baseURL: 'http://localhost:8080/users',
+      timeout: 1000,
+      headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
+    })
+  }
 
   async login(username, password) {
-    console.log('API')
-    return apiUtils.getInstance(this.usersUrl).post('/login',
+    return this.getUsersInstance().post('/login',
       {
         'username': username,
         'password': password
@@ -15,14 +19,14 @@ export class UsersApi {
   }
 
   async findAll() {
-    return apiUtils.getInstance(this.usersUrl).get('');
+    return this.getUsersInstance().get('');
   }
 
   async createUser(user) {
-    return apiUtils.getInstance(this.usersUrl).post('', user);
+    return this.getUsersInstance().post('', user);
   }
 
   async deleteUser(username) {
-    return apiUtils.getInstance(this.usersUrl).delete('?username=' + username);
+    return this.getUsersInstance().delete('?username=' + username);
   }
 }

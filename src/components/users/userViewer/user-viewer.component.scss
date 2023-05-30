@@ -1,0 +1,19 @@
+.user-viewer {
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  padding: 1vh;
+  position: relative;
+
+  .button-wrapper {
+    display: flex;
+    gap: 1vh;
+  }
+
+  .user-header {
+    line-height: 1;
+
+    .creator {
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@import "src/variables";
+
+.background {
+  align-items: center;
+  background-color: rgb(200, 200, 200, .5);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 2000;
+
+  .container {
+    background-color: $white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    height: 100px;
+    padding: 25px;
+    position: relative;
+    width: 280px;
+
+    .button-wrapper {
+
+      button {
+        background-color: $white;
+      }
+    }
+
+    .text-wrapper {
+      margin-bottom: 16px;
+      margin-top: 16px;
+      text-align: center;
+      word-break: break-word;
+
+      .modal-text {
+        font-size: 16px;
+        letter-spacing: 0;
+        text-align: center;
+      }
+    }
+
+    .action-buttons-wrapper {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+  }
+}

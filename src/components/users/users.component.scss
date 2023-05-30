@@ -1,4 +1,36 @@
+@import 'src/variables';
+
 .users {
   height: calc(100vh - 6vh);
   margin-top: 2vh;
+
+  .users-wrapper {
+
+    .function-wrapper {
+
+      .button-wrapper {
+        position: absolute;
+        right: 1vh;
+        top: 1vh;
+
+        &.cancel {
+          transform: rotate(45deg);
+        }
+
+        .button-icon {
+          background-color: $white;
+        }
+      }
+    }
+
+    .list-wrapper {
+      margin-top: 2vh;
+
+      .users-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1vh;
+      }
+    }
+  }
 }
