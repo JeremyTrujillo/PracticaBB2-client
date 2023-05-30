@@ -69,7 +69,7 @@ export default class UserCreatorComponent extends Component{
         <div className="editor-wrapper">
           <input type="text" placeholder="Username..." onChange={event => this.setUsername(event.target.value)}/>
           { this.state.usernameEmptyError ? <span className="error">Username is empty</span> : null }
-          <input type="text" placeholder="Password..."  onChange={event => this.setPassword(event.target.value)}/>
+          <input type="password" placeholder="Password..."  onChange={event => this.setPassword(event.target.value)}/>
           { this.state.passwordEmptyError ? <span className="error">Password is empty</span> : null }
           <select className="role" onChange={event => this.setRole(event.target.value)} defaultValue={0}>
             <option value="USER">User</option>
