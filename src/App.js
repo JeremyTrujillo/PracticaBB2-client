@@ -24,7 +24,7 @@ export default function App() {
           { role === "ADMIN" ? <a href="/users">Users</a> : null }
         </div>
         <div className="login-wrapper">
-          { loggedUser  !== null ? <a href="/items" onClick={logout}>Logout</a> : <a href="/login">Login</a> }
+          { loggedUser !== null ? <a href="/items" onClick={logout}>Logout</a> : <a href="/login">Login</a> }
         </div>
       </div>
     </div>

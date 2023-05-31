@@ -6,7 +6,7 @@ export default class DialogModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        text: '',
+      text: '',
     }
     switch (this.props.modalType) {
       case 'deleteItem':

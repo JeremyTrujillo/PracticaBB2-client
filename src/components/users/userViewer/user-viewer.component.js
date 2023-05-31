@@ -54,7 +54,7 @@ export default class UserViewerComponent extends Component {
         </div>
         <div className="user-header">
           <h2>{this.state.user.username}</h2>
-          <span className="creator">{this.state.user.role}</span>
+          <span className="role">{this.state.user.role}</span>
         </div>
         {this.state.modalOpen && <DialogModal modalType={this.state.modalType} setOpenModal={this.setModal} confirm={this.modalAction} />}
       </div>

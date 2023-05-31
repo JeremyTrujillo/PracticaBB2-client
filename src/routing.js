@@ -28,6 +28,6 @@ export default function Routing() {
         </Route>
         <Route path="*" element={<Navigate to="/items" replace />}/>
       </Routes>
-    </BrowserRouter>  
+    </BrowserRouter>
   )
 }

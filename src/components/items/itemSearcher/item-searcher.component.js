@@ -88,8 +88,6 @@ export default class ItemSearcherComponent extends Component {
     this.setState({itemCodeEmptyError: false, itemNotFoundError: false});
   }
 
-
-
   render() {
     return(
       <div className="item-searcher">

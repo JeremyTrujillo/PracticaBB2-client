@@ -12,7 +12,7 @@ export default class TextareaModal extends Component {
         }
         switch (this.props.modalType) {
             case 'deactivateItem':
-                this.state.text =  "Are you sure that you want to deactivate this item?";
+                this.state.text = "Are you sure that you want to deactivate this item?";
               break;
             default:
           }

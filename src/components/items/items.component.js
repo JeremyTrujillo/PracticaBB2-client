@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./items.component.scss";
-import {  Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export default class ItemsComponent extends Component {
 
@@ -30,7 +30,7 @@ export default class ItemsComponent extends Component {
             <Outlet />
           </div>
         </div>
-      </div>        
+      </div>
     )
   }
 }
