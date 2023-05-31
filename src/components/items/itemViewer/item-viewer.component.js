@@ -98,8 +98,8 @@ export default class ItemViewerComponent extends Component {
         })
     }
 
-    changeURL = (url) => {
-        window.location.href = url + this.state.item.id;
+    editItem = () => {
+        this.props.editItem(this.state.item);
     }
 
     setModal = (boolean) => {
@@ -110,7 +110,7 @@ export default class ItemViewerComponent extends Component {
         return(
             <div className="item-viewer">
                 <div className="button-wrapper">
-                    <button className="action-button" onClick={this.changeURL.bind(this, "/items/edit/")}>Edit</button>
+                    <button className="action-button" onClick={this.editItem.bind(this)}>Edit</button>
                     {this.state.item.state === "ACTIVE" ?
                       <button className="action-button" onClick={() => this.setState({
                           textAreamodalOpen: true,

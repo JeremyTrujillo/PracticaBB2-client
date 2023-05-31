@@ -1,0 +1,22 @@
+@import '/src/variables';
+
+.item-editor {
+
+    .editor-wrapper {
+
+        input {
+            background-color: $light-gray;
+            border: 0 none;
+            border-radius: 1vh;
+            box-sizing: border-box;
+            height: 3vh;
+            margin: 1vh 0;
+            padding: 1vh;
+            width: 100%;
+
+            &:disabled {
+                opacity: .5;
+            }
+        }
+    }
+}

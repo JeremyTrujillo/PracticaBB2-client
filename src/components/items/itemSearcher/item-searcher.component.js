@@ -1,7 +1,6 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import "./item-searcher.component.scss";
 import { ItemsApi } from "../../../api/items.api";
-import ItemViewerComponent from "../itemViewer/item-viewer.component";
 
 const itemsApi = new ItemsApi();
 export default class ItemSearcherComponent extends Component {
@@ -20,6 +19,7 @@ export default class ItemSearcherComponent extends Component {
     this.setState({itemCodeEmptyError: false, itemNotFoundError: false});
     itemsApi.findAll().then((response) => {
       this.setState({items: response.data});
+      this.props.foundItems(response.data);
     }).catch((error) => {
       if (error.response?.status === 401) {
         window.location.href = "/login";
@@ -103,14 +103,6 @@ export default class ItemSearcherComponent extends Component {
         </div>
         <button onClick={this.findCheapestPerSupplier}>Find cheapest per supplier</button>
         { this.state.itemNotFoundError ? <span className={'error'}>Item not found</span> : null}
-        <div className="list-wrapper">
-            <h4>Items list</h4>
-            <ul className="items-list">
-            {
-              this.state.items.map(item => <li key={item.id}><ItemViewerComponent item={item}/></li>)
-            }
-            </ul>
-          </div>
       </div>
     )
   }

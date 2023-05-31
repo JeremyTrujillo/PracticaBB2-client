@@ -35,8 +35,7 @@ export class ItemsApi {
   }
 
   async editItem(item, id) {
-    return this.getItemsInstance().put('', {
-      item,
+    return this.getItemsInstance().put('', item, {
       params: {
         id: id
       }
