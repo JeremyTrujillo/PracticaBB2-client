@@ -21,6 +21,9 @@
     width: 280px;
 
     .button-wrapper {
+      position: absolute;
+      right: 1vh;
+      top: 1vh;
 
       button {
         background-color: $white;

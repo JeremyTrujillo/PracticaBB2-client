@@ -28,7 +28,6 @@ export default class ItemsComponent extends Component {
 
   editItem = (item) => {
     this.state.editItemCode = item.itemCode;
-    console.log(item.itemCode);
     window.location.href =  "/items/edit/" + item.id;
   }
 

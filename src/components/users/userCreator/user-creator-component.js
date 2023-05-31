@@ -35,7 +35,6 @@ export default class UserCreatorComponent extends Component{
     usersApi.createUser(user).then(() => {
       window.location.href = "/users";
     }).catch((error) => {
-      console.log(error)
       if (error.response?.status === 401) {
         window.location.href = "/login";
       }

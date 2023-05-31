@@ -36,7 +36,6 @@ export default class ItemCreatorComponent extends Component{
     itemsApi.createItem(item).then(() => {
       window.location.href = "/items";
     }).catch((error) => {
-      console.log(error)
       if (error.response?.status === 400) {
         this.setState({invalidItemCodeError: true})
       }

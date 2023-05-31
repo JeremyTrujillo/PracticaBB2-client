@@ -15,6 +15,10 @@ export default class DialogModal extends Component {
       case 'deleteUser':
         this.state.text = "Are you sure that you want to delete this user?";
         break;
+      case 'deleteSupplier':
+        this.state.text = "Are you sure that you want to delete this supplier?";
+      case 'deletePriceReduction':
+        this.state.text = "Are you sure that you want to delete this price reduction?";
       default:
       }
   }

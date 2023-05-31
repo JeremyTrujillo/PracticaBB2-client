@@ -32,7 +32,6 @@ export default class UserViewerComponent extends Component {
     usersApi.deleteUser(this.state.user.username).then(() => {
       window.location.href = "/users";
     }).catch((error) => {
-      console.log(error)
       if (error.response?.status === 401) {
         window.location.href = "/login";
       }

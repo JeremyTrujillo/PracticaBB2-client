@@ -68,7 +68,6 @@ export default class ItemViewerComponent extends Component {
         itemsApi.deactivateItem(itemDeactivator).then(() => {
             window.location.href = "/items";
         }).catch((error) => {
-            console.log(error)
             if (error.response?.status === 400) {
                 console.log('Bad request')
             }
@@ -85,12 +84,11 @@ export default class ItemViewerComponent extends Component {
         itemsApi.deleteItemByItemCode(this.state.item.itemCode).then(() => {
             window.location.href = "/items";
         }).catch((error) => {
-            console.log(error)
             if (error.response?.status === 401) {
                 window.location.href = "/login";
             }
             if (error.response?.status === 403) {
-                console.log('No eres administrador');
+                console.log('You are not an administrator');
             }
             if (error.response?.status === 404) {
                 this.setState({existingItemCodeError: true})

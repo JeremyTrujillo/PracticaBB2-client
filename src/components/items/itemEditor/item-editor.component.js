@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { ItemsApi } from "../../../api/items.api";
 import "./item-editor.component.scss";
+import ItemSuppliersEditor from "./itemSuppliersEditor/item-suppliers-editor.component";
+import ItemPriceReductionsEditor from "./itemPriceReductionsEditor/item-price-reductions-editor.component";
 
 const itemsApi = new ItemsApi();
 export default class ItemEditorComponent extends Component{
@@ -20,7 +22,6 @@ export default class ItemEditorComponent extends Component{
   findByItemCode = (itemCode) => {
     itemsApi.findByCode(itemCode).then((response) => {
       const item = response.data;
-      console.log(item.priceReductions)
       this.setState({item: item});
     }).catch((error) => {
       if (error.response?.status === 401) {
@@ -57,10 +58,6 @@ export default class ItemEditorComponent extends Component{
     })
   }
 
-  formatDate = (date) => {
-    return new Date(date).toLocaleString().split(',')[0];
-  }
-
   setDescriptionValue = (value) => {
     this.state.item.description = value;
     this.setState({descriptionEmptyError: false});
@@ -82,30 +79,8 @@ export default class ItemEditorComponent extends Component{
           <input type="text" placeholder="Description..." defaultValue={this.state.item.description} onChange={event => this.setDescriptionValue(event.target.value)}/>
           { this.state.descriptionEmptyError ? <span className="error">Description is empty</span> : null }
           <input type="number" step="0.01" min="0.00" defaultValue={this.state.item.price} placeholder="Price..."  onChange={event => this.setPriceValue(event.target.value)}/>
-          <div className="suppliers">
-          <div className="list-wrapper">
-              <h4>Suppliers</h4>
-              <ul className="suppliers-list">
-              {
-                this.state.item.suppliers?.map(supplier => <li key={supplier.id}>
-                  {supplier.name + ' (' +  supplier.country + ')'}
-                </li>)
-              }
-                <li><button>New supplier</button></li>
-              </ul>
-            </div>
-          </div>
-          <div className="priceReductions">
-          <h4>Price Reductions</h4>
-              <ul className="price-reductions-list">
-              {
-                this.state.item.priceReductions?.map(priceReduction => <li key={priceReduction.id}>
-                  {'- ' + priceReduction.reducedPrice + ' FROM ' + this.formatDate(priceReduction.startDate) + ' TO ' +  this.formatDate(priceReduction.endDate)}
-                </li>)
-              }
-                <li><button>New price reduction</button></li>
-              </ul>
-          </div>
+          <ItemSuppliersEditor suppliers = {this.state.item.suppliers}/>
+          <ItemPriceReductionsEditor priceReductions = {this.state.item.priceReductions}/>
           <button className="action-button form-button" onClick={this.editItem}>Accept</button>
         </div>
       </div>
