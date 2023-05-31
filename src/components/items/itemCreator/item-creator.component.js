@@ -33,8 +33,7 @@ export default class ItemCreatorComponent extends Component{
       "description": this.state.description,
       "price": this.state.price
     }
-    itemsApi.createItem(item).then((response) => {
-      console.log(response);
+    itemsApi.createItem(item).then(() => {
       window.location.href = "/items";
     }).catch((error) => {
       console.log(error)
@@ -50,21 +49,16 @@ export default class ItemCreatorComponent extends Component{
     })
   }
 
-  setItemCodeValue = (value) => {
-    this.setState({itemCode: value});
-    this.setState({itemCodeEmptyError: false});
-    this.setState({existingItemCodeError: false});
+  setItemCode = (value) => {
+    this.setState({itemCode: value, itemCodeEmptyError: false, existingItemCodeError: false});
   }
 
-  setDescriptionValue = (value) => {
-    this.setState({description: value});
-    this.setState({descriptionEmptyError: false});
-    this.setState({existingItemCodeError: false});
+  setDescription = (value) => {
+    this.setState({description: value, descriptionEmptyError: false, existingItemCodeError: false});
   }
 
-  setPriceValue = (value) => {
-    this.setState({price: value});
-    this.setState({existingItemCodeError: false});
+  setPrice = (value) => {
+    this.setState({price: value, existingItemCodeError: false});
   }
 
   render() {
@@ -72,11 +66,11 @@ export default class ItemCreatorComponent extends Component{
       <div className="item-creator">
         <h2>Creator</h2>
         <div className="editor-wrapper">
-          <input type="number" placeholder="Item code..." min={1} onChange={event => this.setItemCodeValue(event.target.value)}/>
+          <input type="number" placeholder="Item code..." min={1} onChange={event => this.setItemCode(event.target.value)}/>
           { this.state.itemCodeEmptyError ? <span className="error">Item code is empty</span> : null }
-          <input type="text" placeholder="Description..."  onChange={event => this.setDescriptionValue(event.target.value)}/>
+          <input type="text" placeholder="Description..."  onChange={event => this.setDescription(event.target.value)}/>
           { this.state.descriptionEmptyError ? <span className="error">Description is empty</span> : null }
-          <input type="number" step="0.01" min="0.00" defaultValue={0.01} placeholder="Price..."  onChange={event => this.setPriceValue(event.target.value)}/>
+          <input type="number" step="0.01" min="0.00" defaultValue={0.01} placeholder="Price..."  onChange={event => this.setPrice(event.target.value)}/>
           <button className="action-button form-button" onClick={this.createItem}>Create</button>
           { this.state.existingItemCodeError ? <span className="error">Item code already in use</span> : null }
           { this.state.invalidItemCodeError ? <span className="error">Invalid Item code</span> : null }

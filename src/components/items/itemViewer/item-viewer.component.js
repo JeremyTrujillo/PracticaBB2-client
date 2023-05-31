@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./item-viewer.component.scss";
-import Modal from "../../../modals/modal";
+import DialogModal from "../../../modals/dialogModal/dialog-modal";
+import TextareaModal from "../../../modals/textareaModal/textarea-modal";
 import { ItemsApi } from "../../../api/items.api";
 
 const itemsApi = new ItemsApi();
@@ -12,14 +13,18 @@ export default class ItemViewerComponent extends Component {
             item: this.props.item,
             suppliers: this.parseSuppliers(this.props.item.suppliers),
             priceReduction: this.parsePriceReductions(this.props.item.priceReductions),
-            modalOpen: false,
+            dialogModalOpen: false,
+            textAreamodalOpen: false,
             modalType: ''
         }
     }
     role = localStorage.getItem("role");
-    id = 1;
+    id = localStorage.getItem("id");
 
     parseSuppliers = (suppliers) => {
+        if (suppliers.length < 1) {
+            return null;
+        }
         let suppliersList = '';
         for (const supplier of suppliers) {
           suppliersList = suppliersList.concat(supplier.name + ', ');
@@ -32,8 +37,7 @@ export default class ItemViewerComponent extends Component {
             return null;
         }
         let date = new Date();
-        for (const element of priceReductions) {
-          const priceReduction = element;
+        for (const priceReduction of priceReductions) {
             let start = new Date(priceReduction.startDate);
             let end = new Date(priceReduction.endDate);
             if (date >= start && date <= end) {
@@ -43,10 +47,10 @@ export default class ItemViewerComponent extends Component {
         return null;
     }
 
-    modalAction = () => {
+    modalAction = (text) => {
         switch (this.state.modalType) {
             case 'deactivateItem':
-                this.deactivateItem();
+                this.deactivateItem(text);
                 break;
             case 'deleteItem':
                 this.deleteItem();
@@ -55,13 +59,12 @@ export default class ItemViewerComponent extends Component {
         }
     }
 
-    deactivateItem = () => {
+    deactivateItem = (text) => {
         const itemDeactivator = {
             itemId: this.state.item.id,
             userId: this.id,
-            reason: 'Reason'
+            reason: text
         }
-        console.log(itemDeactivator)
         itemsApi.deactivateItem(itemDeactivator).then(() => {
             window.location.href = "/items";
         }).catch((error) => {
@@ -100,7 +103,7 @@ export default class ItemViewerComponent extends Component {
     }
 
     setModal = (boolean) => {
-        this.setState({modalOpen: boolean, modalType: ''});
+        this.setState({dialogModalOpen: boolean, textAreamodalOpen: false, modalType: ''});
     }
 
     render() {
@@ -110,30 +113,38 @@ export default class ItemViewerComponent extends Component {
                     <button className="action-button" onClick={this.changeURL.bind(this, "/items/edit/")}>Edit</button>
                     {this.state.item.state === "ACTIVE" ?
                       <button className="action-button" onClick={() => this.setState({
-                          modalOpen: true,
+                          textAreamodalOpen: true,
                           modalType: 'deactivateItem'
                       })}>Deactivate</button>
                     : null }
                     {this.role === "ADMIN" ?
-                      <button className="action-button" onClick={() => this.setState({modalOpen: true, modalType: 'deleteItem'})}>Delete</button> : null}
+                        <button className="action-button" 
+                            onClick={() => this.setState({dialogModalOpen: true, modalType: 'deleteItem'})}>Delete
+                        </button> : null}
                 </div>
                 <div className="item-header">
                     <div className="header-first-line">
                         <h2>{this.state.item.itemCode}</h2>
                         <h4>
                             { this.state.priceReduction != null ?
-                            <span><span className="original-price">{this.state.item.price}</span> {this.state.item.price - this.state.priceReduction}€</span> :
-                            this.state.item.price}
+                            <span>
+                                <span className="original-price">{this.state.item.price}</span>
+                                {this.state.item.price - this.state.priceReduction}€
+                            </span> :
+                            this.state.item.price }
                         </h4>
                     </div>
                     <span className="creator">{this.state.item.creator.username}</span>
                 </div>
                 <div className="description-wrapper">
                     <span>{this.state.item.description}</span>
-                    <span>Suppliers: {this.state.suppliers}</span>
+                    { this.state.suppliers != null ? <span>Suppliers: {this.state.suppliers}</span> : null }
                 </div>
                 <span>{this.state.item.state}</span>
-                {this.state.modalOpen && <Modal modalType={this.state.modalType} setOpenModal={this.setModal} confirm={this.modalAction} />}
+                {this.state.dialogModalOpen && 
+                    <DialogModal modalType={this.state.modalType} setOpenModal={this.setModal} confirm={this.modalAction} />}
+                {this.state.textAreamodalOpen && 
+                    <TextareaModal modalType={this.state.modalType} setOpenModal={this.setModal} confirm={this.modalAction} />}
             </div>
         )
    }

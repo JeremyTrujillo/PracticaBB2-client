@@ -31,6 +31,7 @@ export default class LoginComponent extends Component {
     usersApi.login(this.state.username, this.state.password).then(response => {
       const data = response.data;
       localStorage.setItem("token", data.token);
+      localStorage.setItem("id", data.id);
       localStorage.setItem("username", data.username);
       localStorage.setItem("role", data.roles[0].authority)
       window.location.href = "/items";
@@ -44,18 +45,12 @@ export default class LoginComponent extends Component {
     });
   }
 
-  setUsernameValue = (value) => {
-    this.setState({usernameError: false});
-    this.setState({credentialsError: false});
-    this.setState({userError: false});
-    this.setState({username: value});
+  setUsername = (value) => {
+    this.setState({username: value, usernameError: false, credentialsError: false, userError: false});
   }
 
-  setPasswordValue = (value) => {
-    this.setState({passwordError: false});
-    this.setState({credentialsError: false});
-    this.setState({userError: false});
-    this.setState({password: value});
+  setPassword = (value) => {
+    this.setState({password: value, passwordError: false, credentialsError: false, userError: false});
   }
 
   render() {
@@ -70,7 +65,7 @@ export default class LoginComponent extends Component {
               id="username"
               className="username"
               placeholder="Username"
-              onChange={event => this.setUsernameValue(event.target.value)}/>
+              onChange={event => this.setUsername(event.target.value)}/>
             {this.state.usernameError ? <span className={'error'}>Username is mandatory</span> : null}
             <input
               type="password"
@@ -78,7 +73,7 @@ export default class LoginComponent extends Component {
               id="password"
               className="password"
               placeholder="Password"
-              onChange={event => this.setPasswordValue(event.target.value)}/>
+              onChange={event => this.setPassword(event.target.value)}/>
             {this.state.passwordError ? <span className={'error'}>Password is mandatory</span> : null}
             {this.state.credentialsError ? <span className={'error'}>Password is not correct</span> : null}
             {this.state.userError ? <span className={'error'}>User not found</span> : null}

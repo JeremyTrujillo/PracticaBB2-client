@@ -46,20 +46,15 @@ export default class UserCreatorComponent extends Component{
   }
 
   setUsername = (value) => {
-    this.setState({username: value});
-    this.setState({usernameEmptyError: false});
-    this.setState({existingUsernameError: false});
+    this.setState({username: value, usernameEmptyError: false, existingUsernameError: false});
   }
 
   setPassword = (value) => {
-    this.setState({password: value});
-    this.setState({passwordEmptyError: false});
-    this.setState({existingUsernameError: false});
+    this.setState({password: value, passwordEmptyError: false, existingUsernameError: false});
   }
 
   setRole = (value) => {
-    this.setState({role: value});
-    this.setState({existingUsernameError: false});
+    this.setState({role: value, existingUsernameError: false});
   }
 
   render() {

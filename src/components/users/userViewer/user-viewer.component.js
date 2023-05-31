@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './user-viewer.component.scss';
-import Modal from "../../../modals/modal";
+import DialogModal from "../../../modals/dialogModal/dialog-modal";
 import { UsersApi } from "../../../api/users.api";
 
 const usersApi = new UsersApi();
@@ -56,7 +56,7 @@ export default class UserViewerComponent extends Component {
           <h2>{this.state.user.username}</h2>
           <span className="creator">{this.state.user.role}</span>
         </div>
-        {this.state.modalOpen && <Modal modalType={this.state.modalType} setOpenModal={this.setModal} confirm={this.modalAction} />}
+        {this.state.modalOpen && <DialogModal modalType={this.state.modalType} setOpenModal={this.setModal} confirm={this.modalAction} />}
       </div>
     )
   }

@@ -1,6 +1,6 @@
 @import "src/variables";
 
-.background {
+.textarea-modal {
   align-items: center;
   background-color: rgb(200, 200, 200, .5);
   display: flex;
@@ -16,10 +16,12 @@
     background-color: $white;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    height: 100px;
     padding: 25px;
     position: relative;
     width: 280px;
+    display: flex;
+    gap: 1vh;
+    flex-direction: column;
 
     .button-wrapper {
 
@@ -29,7 +31,6 @@
     }
 
     .text-wrapper {
-      margin-bottom: 16px;
       margin-top: 16px;
       text-align: center;
       word-break: break-word;
@@ -39,6 +40,24 @@
         letter-spacing: 0;
         text-align: center;
       }
+    }
+
+    .textarea-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1vh;
+
+        textarea {
+            background-color: #F1F2F3;
+            border: 0 none;
+            border-radius: 1vh;
+            box-sizing: border-box;
+            height: 6vh;
+            /* margin: 1vh 0; */
+            padding: 0.5vh 1vh;
+            width: 100%;
+            resize: none;
+        }
     }
 
     .action-buttons-wrapper {
